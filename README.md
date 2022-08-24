@@ -7,3 +7,5 @@
 3. generateRGBcolor to generateHexColor function
 4. create handleGeneratedColor function control from main function
 5. create handleCopyColor function control from main function
+6. create handleChangeColor function
+7. create isValidColorCode function

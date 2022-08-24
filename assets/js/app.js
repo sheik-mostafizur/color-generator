@@ -4,6 +4,8 @@
  * 3. generateRGBcolor to generateHexColor function
  * 4. create handleGeneratedColor function control from main function
  * 5. create handleCopyColor function control from main function
+ * 6. create handleChangeColor function
+ * 7. create isValidColorCode function
  */
 
 window.onload = function () {
@@ -17,6 +19,7 @@ function main() {
 
   generateColorBtn.addEventListener("click", handleGeneratedColor(colorInput));
   copyBtn.addEventListener("click", handleCopyColor(colorInput));
+  colorInput.addEventListener("keyup", handleChangeColor);
 }
 
 /**
@@ -50,6 +53,15 @@ function handleCopyColor(colorCode) {
     }, 1500);
   };
 }
+// input handleChangeColor function
+function handleChangeColor(event) {
+  const colorCode = event.target.value;
+  if (isValidColorCode(colorCode)) {
+    document.querySelector(
+      ".generated-color"
+    ).style.backgroundColor = `#${colorCode}`;
+  }
+}
 
 /**
  * Utils function
@@ -67,4 +79,9 @@ function generateRGBcolor() {
 function generateHexColor() {
   const { red, green, blue } = generateRGBcolor();
   return `${red.toString(16)}${green.toString(16)}${blue.toString(16)}`;
+}
+// color vallidation
+function isValidColorCode(color) {
+  if (color.length !== 6) return false;
+  return /^[0-9A-Fa-f]{6}$/i.test(color);
 }

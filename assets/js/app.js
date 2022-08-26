@@ -1,7 +1,7 @@
 /**
  * 1. Create Main Function when staying all functions are connected.
- * 2. Generate RGB color function
- * 3. generateRGBcolor to generateHexColor function
+ * 2. Generate Random color code function
+ * 3. generateRandomcolor to generateHexColor function
  * 4. create handleGeneratedColor function control from main function
  * 5. create handleCopyColor function control from main function
  * 6. create handleChangeColor function
@@ -29,7 +29,9 @@ function main() {
 // generate color handle
 function handleGeneratedColor(outputColorCode) {
   return function () {
-    const colorCode = generateHexColor();
+    const randomColorCode = generateRandomcolor();
+    const colorCode = generateHexColor(randomColorCode);
+    console.log(colorCode);
     // show generated color here
     document.querySelector(
       ".generated-color"
@@ -67,8 +69,8 @@ function handleChangeColor(event) {
  * Utils function
  */
 
-// Generate RGB color
-function generateRGBcolor() {
+// Generate Random color
+function generateRandomcolor() {
   let red = Math.floor(Math.random() * 255) + 1;
   let green = Math.floor(Math.random() * 255) + 1;
   let blue = Math.floor(Math.random() * 255) + 1;
@@ -76,9 +78,12 @@ function generateRGBcolor() {
 }
 
 // Generate Hex color code
-function generateHexColor() {
-  const { red, green, blue } = generateRGBcolor();
-  return `${red.toString(16)}${green.toString(16)}${blue.toString(16)}`;
+function generateHexColor({ red, green, blue }) {
+  const checkHex = (value) => {
+    const hex = value.toString(16);
+    return hex.length === 1 ? `0${hex}` : hex;
+  };
+  return `${checkHex(red)}${checkHex(green)}${checkHex(blue)}`;
 }
 // color vallidation
 function isValidColorCode(color) {

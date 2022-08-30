@@ -10,38 +10,44 @@
       integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="./assets/css/style.css" />
   </head>
   <body>
     <!-- start body area -->
+    <h4 class="copy-area shadow"></h4>
     <div class="container">
-      <div class="d-flex align-items-center justify-content-center vh-100">
-        <div class="generate-color-area shadow">
-          <h4>Generate Ranom Hex Color Code</h4>
-          <div class="generated-color shadow-sm"></div>
-          <div class="input-group mb-3">
-            <span class="input-group-text">#</span>
-            <input
-              type="text"
-              class="form-control"
-              id="colorInput"
-              value="ffffff"
-            />
-            <button class="btn btn-success" type="button" id="copyBtn">
-              Copy
+      <div class="row">
+        <div class="col">
+          <div class="generate-color-area shadow m-auto my-4">
+            <div class="save-icon shadow-sm ms-auto mb-2">
+              <img src="./assets/images/heart.svg" alt="" />
+            </div>
+            <h4>Generate Ranom Hex Color Code</h4>
+            <div class="generated-color shadow-sm"></div>
+            <div class="input-group mb-3">
+              <span class="input-group-text">#</span>
+              <input
+                type="text"
+                class="form-control"
+                id="colorInput"
+                value="ffffff"
+              />
+              <button class="btn btn-success" type="button" id="copyBtn">
+                Copy
+              </button>
+            </div>
+            <button
+              class="btn btn-primary form-control"
+              type="button"
+              id="generateColorBtn"
+            >
+              Generate
             </button>
           </div>
-          <button
-            class="btn btn-primary form-control"
-            type="button"
-            id="generateColorBtn"
-          >
-            Generate
-          </button>
+          <div id="color-list" class="save-color-area shadow m-auto my-4"></div>
         </div>
       </div>
     </div>
-    <h4 class="copy-area shadow"></h4>
     <!-- end body area -->
     <script defer src="./assets/js/app.js"></script>
   </body>

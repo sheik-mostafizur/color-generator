@@ -9,3 +9,6 @@
 5. create handleCopyColor function control from main function
 6. create handleChangeColor function
 7. create isValidColorCode function
+8. create handleSaveColor handler function
+9. create a new function createColorItem
+10. create a function isActiveSaveColor

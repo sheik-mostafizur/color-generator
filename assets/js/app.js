@@ -141,6 +141,5 @@ function isActiveSaveColor(colors, colorInput) {
     console.log(colors.includes(colorInput.value));
   } else {
     saveIcon.src = "./assets/images/heart.svg";
-    console.log(colors.includes(colorInput.value));
   }
 }

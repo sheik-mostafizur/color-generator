@@ -1,5 +1,10 @@
 # color-generator
 
+[version-1.0.0](#version-1.0.0) <br />
+[version-1.1.0](#version-1.1.0) <br />
+[version-1.1.1](#version-1.1.1) <br />
+[version-1.2.1](#version-1.2.1) <br />
+
 <!-- requirements -->
 
 1. Create Main Function when staying all functions are connected.
@@ -12,3 +17,14 @@
 8. create handleSaveColor handler function
 9. create a new function createColorItem
 10. create a function isActiveSaveColor
+
+
+## [<span id="version-1.0.0">Go to version-1.0.0</span>](https://github.com/sheik-mostafizur/color-generator/tree/version-1.0.0)
+![version-1.0.0](/assets/version/version-1.0.0.png)
+
+## [<span id="version-1.1.0">Go to version-1.1.0</span>](https://github.com/sheik-mostafizur/color-generator/tree/version-1.1.0)
+![version-1.1.0](/assets/version/version-1.1.0.png)
+
+## [<span id="version-1.2.1">Go to version-1.2.1</span>](https://github.com/sheik-mostafizur/color-generator/tree/version-1.2.1)
+![version-1.2.1](/assets/version/version-1.2.1.png)
+

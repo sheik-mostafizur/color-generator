@@ -16,8 +16,8 @@
 
 
 ## [version-1.0.0](https://github.com/sheik-mostafizur/color-generator/tree/version-1.0.0)
-![version-1.0.0](/version-1.0.0.png)
+![version-1.0.0](/assets/version/version-1.0.0.png)
 
 
 ## [version-1.1.0](https://github.com/sheik-mostafizur/color-generator/tree/version-1.1.0)
-![version-1.1.0](/version-1.1.0.png)
+![version-1.1.0](/assets/version/version-1.1.0.png)

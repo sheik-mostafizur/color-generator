@@ -38,11 +38,12 @@ h4.copid {
   width: 38px;
   height: 38px;
   border-radius: 50%;
+  text-align: center;
 }
-.save-icon img {
+.save-icon i {
   cursor: pointer;
   margin-top: 9px;
-  margin-left: 5px;
+  font-size: 24px;
 }
 
 .save-color-area {

@@ -22,7 +22,7 @@ function main() {
   const colorInput = document.getElementById("colorInput");
   const generateColorBtn = document.getElementById("generateColorBtn");
   const copyBtn = document.getElementById("copyBtn");
-  const saveBtn = document.querySelector(".save-icon img");
+  const saveBtn = document.querySelector(".save-icon i");
 
   generateColorBtn.addEventListener("click", handleGeneratedColor(colorInput));
   copyBtn.addEventListener("click", handleCopyColor(colorInput));
@@ -135,11 +135,14 @@ function createColorItem(colors) {
 
 // check save icon isActive
 function isActiveSaveColor(colors, colorInput) {
-  const saveIcon = document.querySelector(".save-icon img");
+  const saveIcon = document.querySelector(".save-icon i");
   if (colors.includes(colorInput.value)) {
-    saveIcon.src = "./assets/images/heart-active.svg";
-    console.log(colors.includes(colorInput.value));
+    saveIcon.classList.remove("fa-regular", "fa-heart");
+    saveIcon.classList.add("fa-solid", "fa-heart");
+    saveIcon.style.color = "#fa0707";
   } else {
-    saveIcon.src = "./assets/images/heart.svg";
+    saveIcon.classList.remove("fa-solid", "fa-heart");
+    saveIcon.classList.add("fa-regular", "fa-heart");
+    saveIcon.style.color = "#212529";
   }
 }

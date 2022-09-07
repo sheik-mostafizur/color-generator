@@ -27,7 +27,7 @@
       <div class="row">
         <div class="col">
           <div class="generate-color-area shadow m-auto my-4">
-            <div class="save-icon shadow-sm ms-auto mb-2">
+            <div class="save-icon icon-area ms-auto mb-2">
               <i class="fa-regular fa-heart"></i>
             </div>
             <h4>Generate Ranom Hex Color Code</h4>
@@ -52,7 +52,25 @@
               Generate
             </button>
           </div>
-          <div id="color-list" class="save-color-area shadow m-auto my-4"></div>
+          <div class="save-color-area color-list-area shadow m-auto">
+            <div class="color-control shadow-sm">
+              <div class="reset-asec">
+                <div class="icon-area">
+                  <i id="reset" class="fa-solid fa-rotate-left"></i>
+                </div>
+                <div class="icon-area">
+                  <i class="fa-solid fa-arrow-down-a-z"></i>
+                </div>
+                <div class="icon-area">
+                  <i class="fa-solid fa-arrow-up-z-a"></i>
+                </div>
+              </div>
+              <div class="icon-area">
+                <i id="delete-colors" class="fa-solid fa-trash-can"></i>
+              </div>
+            </div>
+            <div id="color-list"></div>
+          </div>
         </div>
       </div>
     </div>

@@ -9,6 +9,8 @@
  * 8. create handleSaveColor handler function
  * 9. create a new function createColorItem
  * 10. create a function isActiveSaveColor
+ * 11. create function handleDeleteColors
+ * 12. create functions shortingReset, shortingAscending, shortingDscending
  */
 
 // global variable
@@ -23,18 +25,57 @@ function main() {
   const generateColorBtn = document.getElementById("generateColorBtn");
   const copyBtn = document.getElementById("copyBtn");
   const saveBtn = document.querySelector(".save-icon i");
+  const shortingReset = document.querySelector(".color-control #reset");
+  const shortingAscending = document.querySelector(
+    ".color-control .fa-arrow-down-a-z"
+  );
+  const shortingDscending = document.querySelector(
+    ".color-control .fa-arrow-up-z-a"
+  );
+  const deleteColors = document.querySelector(".color-control #delete-colors");
 
   generateColorBtn.addEventListener("click", handleGeneratedColor(colorInput));
   copyBtn.addEventListener("click", handleCopyColor(colorInput));
   colorInput.addEventListener("keyup", handleChangeColor);
   saveBtn.addEventListener("click", handleSaveColor(colorInput));
 
+  // get colors from localStorage
   const newCustomColors = localStorage.getItem("custom-colors");
   if (newCustomColors) {
     customColors = JSON.parse(newCustomColors);
     createColorItem(customColors);
     isActiveSaveColor(customColors, colorInput);
   }
+
+  // Delete all colors from localStorage
+  deleteColors.addEventListener("click", function () {
+    if (confirm("Are you sure....???")) {
+      localStorage.removeItem("custom-colors");
+      customColors = JSON.parse(localStorage.getItem("custom-colors"));
+      if (!customColors) {
+        customColors = [];
+        const saveColorArea = document.querySelector(".save-color-area");
+        saveColorArea.style.display = "none";
+        isActiveSaveColor(customColors, colorInput);
+      }
+    }
+  });
+  // reset ascending descending
+  shortingReset.addEventListener("click", function () {
+    createColorItem(JSON.parse(localStorage.getItem("custom-colors")));
+  });
+  shortingAscending.addEventListener("click", function () {
+    customColors.sort((a, b) => {
+      return parseInt(a, 16) - parseInt(b, 16);
+    });
+    createColorItem(customColors);
+  });
+  shortingDscending.addEventListener("click", function () {
+    customColors.sort((a, b) => {
+      return parseInt(b, 16) - parseInt(a, 16);
+    });
+    createColorItem(customColors);
+  });
 }
 
 /**
@@ -120,13 +161,16 @@ function isValidColorCode(color) {
 
 // create color Item
 function createColorItem(colors) {
+  const saveColorArea = document.querySelector(".save-color-area");
   const customColors = document.getElementById("color-list");
   customColors.innerHTML = "";
-  if ((customColors.style.display = "none")) {
-    customColors.style.display = "flex";
+  if ((saveColorArea.style.display = "none")) {
+    saveColorArea.style.display = "block";
   }
   colors.forEach((color) => {
     const item = document.createElement("div");
+    item.setAttribute("data-color", color);
+    item.setAttribute("title", color);
     item.classList.add("item", "shadow-sm");
     item.style.backgroundColor = `#${color}`;
     customColors.appendChild(item);
@@ -139,10 +183,10 @@ function isActiveSaveColor(colors, colorInput) {
   if (colors.includes(colorInput.value)) {
     saveIcon.classList.remove("fa-regular", "fa-heart");
     saveIcon.classList.add("fa-solid", "fa-heart");
-    saveIcon.style.color = "#fa0707";
+    saveIcon.style.color = "var(--heart)";
   } else {
     saveIcon.classList.remove("fa-solid", "fa-heart");
     saveIcon.classList.add("fa-regular", "fa-heart");
-    saveIcon.style.color = "#212529";
+    saveIcon.style.color = "var(--gray)";
   }
 }

@@ -19,13 +19,16 @@
 10. create a function isActiveSaveColor
 11. create function handleDeleteColors
 12. create functions shortingReset, shortingAscending, shortingDscending
+13. create function getCustomColorsLS
 
 ## [<span id="version-1.0.0">Go to version-1.0.0</span>](https://github.com/sheik-mostafizur/color-generator/tree/version-1.0.0)
+
 ![version-1.0.0](/assets/version/version-1.0.0.png)
 
 ## [<span id="version-1.1.0">Go to version-1.1.0</span>](https://github.com/sheik-mostafizur/color-generator/tree/version-1.1.0)
+
 ![version-1.1.0](/assets/version/version-1.1.0.png)
 
 ## [<span id="version-1.2.1">Go to version-1.2.1</span>](https://github.com/sheik-mostafizur/color-generator/tree/version-1.2.1)
-![version-1.2.1](/assets/version/version-1.2.1.png)
 
+![version-1.2.1](/assets/version/version-1.2.1.png)

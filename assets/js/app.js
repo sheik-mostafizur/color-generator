@@ -11,10 +11,8 @@
  * 10. create a function isActiveSaveColor
  * 11. create function handleDeleteColors
  * 12. create functions shortingReset, shortingAscending, shortingDscending
+ * 13. create function getCustomColorsLS
  */
-
-// global variable
-let customColors = [];
 
 window.onload = function () {
   main();
@@ -40,41 +38,41 @@ function main() {
   saveBtn.addEventListener("click", handleSaveColor(colorInput));
 
   // get colors from localStorage
-  const newCustomColors = localStorage.getItem("custom-colors");
-  if (newCustomColors) {
-    customColors = JSON.parse(newCustomColors);
-    createColorItem(customColors);
-    isActiveSaveColor(customColors, colorInput);
+  const colors = getCustomColorsLS();
+  if (colors) {
+    createColorItem(colors);
+    isActiveSaveColor(colors, colorInput);
   }
-
   // Delete all colors from localStorage
   deleteColors.addEventListener("click", function () {
     if (confirm("Are you sure....???")) {
       localStorage.removeItem("custom-colors");
-      customColors = JSON.parse(localStorage.getItem("custom-colors"));
-      if (!customColors) {
-        customColors = [];
+      let colors = getCustomColorsLS();
+      if (!colors) {
+        colors = [];
         const saveColorArea = document.querySelector(".save-color-area");
         saveColorArea.style.display = "none";
-        isActiveSaveColor(customColors, colorInput);
+        isActiveSaveColor(colors, colorInput);
       }
     }
   });
   // reset ascending descending
   shortingReset.addEventListener("click", function () {
-    createColorItem(JSON.parse(localStorage.getItem("custom-colors")));
+    createColorItem(getCustomColorsLS());
   });
   shortingAscending.addEventListener("click", function () {
-    customColors.sort((a, b) => {
+    const colors = getCustomColorsLS();
+    colors.sort((a, b) => {
       return parseInt(a, 16) - parseInt(b, 16);
     });
-    createColorItem(customColors);
+    createColorItem(colors);
   });
   shortingDscending.addEventListener("click", function () {
-    customColors.sort((a, b) => {
+    const colors = getCustomColorsLS();
+    colors.sort((a, b) => {
       return parseInt(b, 16) - parseInt(a, 16);
     });
-    createColorItem(customColors);
+    createColorItem(colors);
   });
 }
 
@@ -92,7 +90,7 @@ function handleGeneratedColor(outputColorCode) {
       ".generated-color"
     ).style.backgroundColor = `#${colorCode}`;
     outputColorCode.value = colorCode;
-    isActiveSaveColor(customColors, colorCode);
+    isActiveSaveColor(getCustomColorsLS(), colorCode);
   };
 }
 // generated color copy from input value
@@ -118,30 +116,38 @@ function handleChangeColor(event) {
     document.querySelector(
       ".generated-color"
     ).style.backgroundColor = `#${colorCode}`;
-    isActiveSaveColor(customColors, event.target);
+    isActiveSaveColor(getCustomColorsLS(), event.target);
   }
 }
 // handle save color
 function handleSaveColor(colorInput) {
   return function () {
+    let colors = getCustomColorsLS();
+    colors = colors === false ? [] : colors;
     const color = colorInput.value;
-    if (customColors.includes(color)) return;
-    customColors.unshift(color);
-    localStorage.setItem("custom-colors", JSON.stringify(customColors));
-    createColorItem(customColors);
-    isActiveSaveColor(customColors, colorInput);
+    if (colors.includes(color)) return;
+    colors.unshift(color);
+    localStorage.setItem("custom-colors", JSON.stringify(colors));
+    createColorItem(colors);
+    isActiveSaveColor(colors, colorInput);
   };
 }
 
 /**
  * Utils function
  */
-
+// getCustomColorsLS
+function getCustomColorsLS() {
+  return localStorage.getItem("custom-colors")
+    ? JSON.parse(localStorage.getItem("custom-colors"))
+    : false;
+}
 // Generate Random color
 function generateRandomcolor() {
-  let red = Math.floor(Math.random() * 255) + 1;
-  let green = Math.floor(Math.random() * 255) + 1;
-  let blue = Math.floor(Math.random() * 255) + 1;
+  // I need 0 to 255 but Math.floor(Math.random() * 255) return 254 if I add Math.floor(Math.random() * 255)+1 then 0 not generate so I can do Math.floor(Math.random() * 256)
+  let red = Math.floor(Math.random() * 256);
+  let green = Math.floor(Math.random() * 256);
+  let blue = Math.floor(Math.random() * 256);
   return { red, green, blue };
 }
 
@@ -179,8 +185,13 @@ function createColorItem(colors) {
 
 // check save icon isActive
 function isActiveSaveColor(colors, colorInput) {
+  colors = colors === false ? [] : colors;
   const saveIcon = document.querySelector(".save-icon i");
   if (colors.includes(colorInput.value)) {
+    saveIcon.classList.remove("fa-regular", "fa-heart");
+    saveIcon.classList.add("fa-solid", "fa-heart");
+    saveIcon.style.color = "var(--heart)";
+  } else if (colors.includes(colorInput)) {
     saveIcon.classList.remove("fa-regular", "fa-heart");
     saveIcon.classList.add("fa-solid", "fa-heart");
     saveIcon.style.color = "var(--heart)";
